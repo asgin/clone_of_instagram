@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}News{% endblock %}
+
+{% block content %}
+    <h1>News</h1>
+    <h2>
+        <a href="http://127.0.0.1:8000/add_photo/">Добавить пост</a>
+        <a href="{{  request.user.url }}">Профиль</a>
+        <a href="http://127.0.0.1:8000/exit/">Выход</a>
+    </h2>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <h3>{{ post.user.username }}</h3>
+                <p>{{ post.text }}</p>
+                <img src="{{ post.photo.url }}" alt="{{ post.text }}">
+                <p>Количество лайков:{{ post.likes }}</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" name="{{ post.id }}">Лайк</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
