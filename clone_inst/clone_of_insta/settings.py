@@ -30,6 +30,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.vk.VKOAuth2',  
+    'social_core.backends.google.GoogleOAuth2',        
+    'django.contrib.auth.backends.ModelBackend', 
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.request',
+    'social_auth.context_processors.social_auth_by_name_backends',
+)
 
 # Application definition
 
@@ -43,6 +54,7 @@ INSTALLED_APPS = [
     'news_list.apps.NewsListConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -70,6 +82,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -111,6 +125,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -136,6 +151,10 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = reverse_lazy('news')
+SOCIAL_AUTH_VK_OAUTH2_KEY = VK_API_CLIENT_ID
+SOCIAL_AUTH_VK_OAUTH2_SECRET = VK_APP_KEY
+SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
+SOCIAL_AUTH_POSTGRES_JSONFIELD = True
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'http://localhost:8000'
 
 AUTH_USER_MODEL = 'users.InstaUser'

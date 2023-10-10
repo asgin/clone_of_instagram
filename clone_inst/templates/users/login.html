@@ -7,4 +7,5 @@
         {{ form.as_table }}
         <button type="submit">Войти</button>
     </form>
+    <a href="{% url 'social:begin' 'vk-oauth2' %}">Войти через ВКонтакте</a>
 {% endblock %}
