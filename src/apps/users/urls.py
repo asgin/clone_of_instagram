@@ -1,4 +1,4 @@
-from .views import ProfileView, LoginView, ProfileView, home, RegisterView
+from apps.users.views import ProfileView, LoginView, ProfileView, home, RegisterView
 from django.urls import include, path
 from django.contrib.auth import views as authViews
 from django.conf import settings

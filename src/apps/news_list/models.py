@@ -1,5 +1,5 @@
 from django.db import models
-from users.models import InstaUser
+from apps.users.models import InstaUser
 
 class Post(models.Model):
     photo = models.ImageField(upload_to='photo/')

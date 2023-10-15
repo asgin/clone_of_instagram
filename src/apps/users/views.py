@@ -1,12 +1,12 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from django.views import View
-from news_list.models import Post, Subscribes
-from .forms import RegisterForm, LoginForm
-from .models import InstaUser
+from apps.news_list.models import Post, Subscribes
+from apps.users.forms import RegisterForm, LoginForm
+from apps.users.models import InstaUser
 from django.views.generic import CreateView, DetailView
 from django.contrib.auth.views import LoginView
-from .services import subs_count, subscribe
+from apps.users.services import subs_count, subscribe
 
 
 class RegisterView(CreateView):
@@ -32,7 +32,7 @@ class ProfileView(DetailView):
     model = InstaUser
     context_object_name = 'user'
 
-    def get_object(self):
+    def get_object(self) -> InstaUser:
         self.user = InstaUser.objects.get(username=self.kwargs['username'])
         return self.user
     

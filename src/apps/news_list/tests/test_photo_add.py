@@ -1,6 +1,6 @@
 from django.test import TestCase
-from news_list.models import Post
-from users.models import InstaUser
+from apps.news_list.models import Post
+from apps.users.models import InstaUser
 
 class TestAddPhoto(TestCase):
 

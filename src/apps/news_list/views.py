@@ -2,10 +2,10 @@ from django.http import HttpRequest, HttpResponse
 from django.views.generic import ListView, CreateView
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
-from .models import Post
-from .forms import PostForm
+from apps.news_list.models import Post
+from apps.news_list.forms import PostForm
 from django.utils.decorators import method_decorator
-from .services import get_posts, post_likes
+from apps.news_list.services import get_posts, post_likes
 
 @method_decorator(login_required, name='dispatch')
 class NewsList(ListView):
